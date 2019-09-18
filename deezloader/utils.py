@@ -123,7 +123,7 @@ def genurl(md5, quality, ids, media):
 	if len(data) % 16:
 		data += b"\x00" * (16 - len(data) % 16)
 
-	c = AES.new("jo6aey6haid2Teih", AES.MODE_ECB)
+	c = AES.new("jo6aey6haid2Teih".encode("utf8"), AES.MODE_ECB)
 
 	media_url = b2a_hex(
 		c.encrypt(data)
