@@ -123,7 +123,7 @@ def genurl(md5, quality, ids, media):
 	if len(data) % 16:
 		data += b"\x00" * (16 - len(data) % 16)
 
-	c = AES.new("jo6aey6haid2Teih".encode("utf8"), AES.MODE_ECB)
+	c = AES.new("jo6aey6haid2Teih".encode(), AES.MODE_ECB)
 
 	media_url = b2a_hex(
 		c.encrypt(data)
@@ -147,7 +147,7 @@ def calcbfkey(songid):
 def blowfishDecrypt(data, key):
 	c = Blowfish.new(
 		key, Blowfish.MODE_CBC,
-		a2b_hex("0001020304050607".encode("utf8"))
+		a2b_hex("0001020304050607")
 	)
 
 	return c.decrypt(data)

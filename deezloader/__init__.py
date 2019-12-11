@@ -15,7 +15,7 @@ from deezloader.utils import (
 	qualities, generate_token
 )
 
-stock_output = os.getcwd() + "/Songs"
+stock_output = stock_output = os.getcwd() + "/Songs"
 stock_quality = "MP3_320"
 stock_recursive_quality = False
 stock_recursive_download = False
@@ -118,7 +118,7 @@ class Login:
 						if a == "MP3_128":
 							raise exceptions.TrackNotFound("There isn't any quality avalaible for download this song")
 
-			name += " (" + qualit + ")" + extension
+			name += extension
 
 			if os.path.isfile(name):
 				if recursive_download:
@@ -407,21 +407,29 @@ class Login:
 			if a['role'] == "Main":
 				datas['ar_album'].append(a['name'])
 
-		datas['ar_album'] = " & ".join(datas['ar_album'])
+		datas['ar_album'] = datas['ar_album'][0]
+		if datas['ar_album'] == "Various Artists":
+			datas['ar_album']= datas['artist']
+		else:
+			datas['artist'] = datas['ar_album']
+
 		datas['label'] = url1['label']
 		datas['bpm'] = str(url['bpm'])
 		datas['gain'] = str(url['gain'])
 		datas['duration'] = str(url['duration'])
 		datas['isrc'] = url['isrc']
 		album = var_excape(datas['album'])
-		directory = output + album + " " + url1['upc'] + "/"
+		title = var_excape(datas['music'])
+		artist = var_excape(datas['artist'])
+		#author = var_excape(datas['author'])
+		directory = output + artist + "/"
 
 		try:
 			os.makedirs(directory)
 		except FileExistsError:
 			pass
 
-		name = directory + album + " CD " + datas['discnum'] + " TRACK " + datas['tracknum']
+		name = directory + artist + " - " + title
 
 		name = self.download(
 			URL, name,
