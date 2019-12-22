@@ -398,25 +398,29 @@ class Login:
 		datas['duration'] = str(url['duration'])
 		datas['isrc'] = url['isrc']
 		album = var_excape(datas['album'])
+		
+		datas['ar_album'] = datas['ar_album'][0]
+		if datas['ar_album'] == "Various Artists":
+			datas['ar_album']= datas['artist']
+		else:
+			datas['artist'] = datas['ar_album']
 
 		directory = (
-			"%s%s %s/"
+			"%s%s/"
 			% (
 				output,
-				album,
-				url1['upc']
+				artist,
 			)
 		)
 
 		check_dir(directory)
 
 		name = (
-			"%s%s CD %s TRACK %s"
+			"%s%s - %s TRACK %s"
 			% (
 				directory,
-				album,
-				datas['discnum'],
-				datas['tracknum']
+				artist,
+				title
 			)
 		)
 
