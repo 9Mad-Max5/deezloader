@@ -1,11 +1,13 @@
 #!/usr/bin/python3
 
 import zipfile
-import requests
+from os import makedirs
+from hashlib import md5
+from requests import get
 from mutagen import File
 from spotipy import oauth2
-from Crypto.Hash import MD5
 from deezloader import exceptions
+from collections import OrderedDict
 from binascii import a2b_hex, b2a_hex
 from Crypto.Cipher import AES, Blowfish
 
@@ -16,7 +18,7 @@ from mutagen.id3 import (
 
 from mutagen.flac import (
 	FLAC, Picture,
-	FLACNoHeaderError
+	FLACNoHeaderError, error
 )
 
 qualities = {
@@ -64,14 +66,14 @@ def choose_img(image):
 
 def request(url, control = False):
 	try:
-		thing = requests.get(url, headers = header)
+		thing = get(url, headers = header)
 	except:
-		thing = requests.get(url, headers = header)
+		thing = get(url, headers = header)
 
 	if control:
 		try:
 			if thing.json()['error']['message'] == "no data":
-				raise exceptions.TrackNotFound("Track not found :(")
+				raise exceptions.NoDataApi("No data avalaible :(")
 		except KeyError:
 			pass
 
@@ -102,13 +104,33 @@ def create_zip(zip_name, nams):
 
 	z.close()
 
-def md5hex(data):
-	h = MD5.new()
-	h.update(data)
+def artist_sort(array):
+	if len(array) > 1:
+		for a in array:
+			for b in array:
+				if a in b and a != b:
+					array.remove(b)
 
-	return b2a_hex(
-		h.digest()
+	artists = ", ".join(
+		OrderedDict.fromkeys(array)
 	)
+
+	return artists
+
+def check_dir(directory):
+	try:
+		makedirs(directory)
+	except FileExistsError:
+		pass
+
+def md5hex(data):
+	hashed = (
+		md5(data)
+		.hexdigest()
+		.encode()
+	)
+
+	return hashed
 
 def genurl(md5, quality, ids, media):
 	data = b"\xa4".join(
@@ -146,7 +168,7 @@ def calcbfkey(songid):
 
 def blowfishDecrypt(data, key):
 	c = Blowfish.new(
-		key, Blowfish.MODE_CBC,
+		key.encode(), Blowfish.MODE_CBC,
 		a2b_hex("0001020304050607")
 	)
 
@@ -197,7 +219,9 @@ def write_tags(song, data):
 		try:
 			tag = File(song, easy = True)
 		except:
-			return
+			raise exceptions.TrackNotFound("")
+	except error:
+		raise exceptions.TrackNotFound("")
 
 	tag['artist'] = data['artist']
 	tag['title'] = data['music']

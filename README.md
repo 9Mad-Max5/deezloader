@@ -11,17 +11,18 @@ This project has been created to download songs, albums or playlists with Spotif
 * ### OS Supported ###
 	![Linux Support](https://img.shields.io/badge/Linux-Support-brightgreen.svg)
 	![macOS Support](https://img.shields.io/badge/macOS-Support-brightgreen.svg)
+	![Windows Support](https://img.shields.io/badge/Windows-Support-brightgreen.svg)
 
 * ### Installation ###
 	pip3 install deezloader
 
 # CLI interface
 
-Finally **deezloader-dw** avalaible ;)
+Finally **deez-dw** avalaible ;)
 ```bash
-$ deezloader-dw -h
+$ deez-dw -h
 ```
-	usage: deezloader-dw [-h] [-l LINK] [-s SONG] [-a ARTIST] [-o OUTPUT]
+	usage: deez-dw [-h] [-l LINK] [-s SONG] [-a ARTIST] [-o OUTPUT]
                      [-q QUALITY] [-rq RECURSIVE_QUALITY]
                      [-rd RECURSIVE_DOWNLOAD] [-g NOT_GUI] [-z ZIP]
                      setting
@@ -31,7 +32,7 @@ $ deezloader-dw -h
   	-l LINK, --link LINK  Deezer or Spotify link for download
   	-s SONG, --song SONG  song name
   	-a ARTIST, --artist ARTIST
-                        artist song
+                       	artist song
   	-o OUTPUT, --output OUTPUT
                         Output folder
   	-q QUALITY, --quality QUALITY
@@ -49,11 +50,9 @@ $ deezloader-dw -h
 
 ## SETTING
 	[login]
-	mail = deezer_mail
-	password = deezer_password
 	token = deezer_arl_token
 
-setting.ini file for use deezloader-dw
+setting.ini file for use deez-dw
 
 
 # Library
@@ -63,7 +62,7 @@ setting.ini file for use deezloader-dw
 ```python
 import deezloader
 
-downloa = deezloader.Login("YOUR DEEZER EMAIL", "YOUR DEEZER PASSWORD", "YOUR ARL TOKEN DEEZER")
+downloa = deezloader.Login("YOUR ARL TOKEN DEEZER")
 #how get arl token https://www.youtube.com/watch?v=pWcG9T3WyYQ the video is not mine
 ```
 
