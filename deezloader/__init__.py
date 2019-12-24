@@ -409,14 +409,14 @@ class Login:
 			"%s%s/"
 			% (
 				output,
-				artist,
+				artist
 			)
 		)
 
 		check_dir(directory)
 
 		name = (
-			"%s%s - %s TRACK %s"
+			"%s%s - %s"
 			% (
 				directory,
 				artist,
