@@ -409,7 +409,7 @@ class Login:
 			"%s%s/"
 			% (
 				output,
-				artist
+				datas['artist']
 			)
 		)
 
@@ -419,7 +419,7 @@ class Login:
 			"%s%s - %s"
 			% (
 				directory,
-				artist,
+				datas['artist'],
 				title
 			)
 		)
