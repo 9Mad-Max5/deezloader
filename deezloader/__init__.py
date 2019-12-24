@@ -416,7 +416,7 @@ class Login:
 		check_dir(directory)
 
 		name = (
-			"%s%s - %s"
+			"%s%s - %s Test"
 			% (
 				directory,
 				datas['artist'],
