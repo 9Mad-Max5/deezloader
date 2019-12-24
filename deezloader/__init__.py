@@ -117,7 +117,7 @@ class Login:
 						if a == "MP3_128":
 							raise exceptions.TrackNotFound("There isn't any quality avalaible for download this song: %s" % name)
 
-			name += " ({}){}".format(qualit, extension)
+			#name += " ({}){}".format(qualit, extension)
 
 			if os.path.isfile(name):
 				if recursive_download:
