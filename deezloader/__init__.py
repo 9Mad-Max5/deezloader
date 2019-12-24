@@ -399,7 +399,7 @@ class Login:
 		datas['isrc'] = url['isrc']
 		album = var_excape(datas['album'])
 		
-		datas['ar_album'] = datas['ar_album'][0]
+		#datas['ar_album'] = datas['ar_album'][0]
 		if datas['ar_album'] == "Various Artists":
 			datas['ar_album']= datas['artist']
 		else:
