@@ -420,7 +420,7 @@ class Login:
 			% (
 				directory,
 				datas['artist'],
-				title
+				url1['title']
 			)
 		)
 
