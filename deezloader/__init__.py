@@ -399,7 +399,6 @@ class Login:
 		datas['isrc'] = url['isrc']
 		album = var_excape(datas['album'])
 		
-		#datas['ar_album'] = datas['ar_album'][0]
 		if datas['ar_album'] == "Various Artists":
 			datas['ar_album']= datas['artist']
 		else:
@@ -483,13 +482,17 @@ class Login:
 
 		datas['ar_album'] = " & ".join(datas['ar_album'])
 		album = var_excape(datas['album'])
-		
+
+		if datas['ar_album'] == "Various Artists":
+			datas['ar_album']= datas['artist']
+		else:
+			datas['artist'] = datas['ar_album']
+			
 		directory = (
-			"%s%s %s/"
+			"%s%s/"
 			% (
 				output,
-				album,
-				url['upc']
+				datas['artist']
 			)
 		)
 
