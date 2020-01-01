@@ -484,11 +484,10 @@ class Login:
 		album = var_excape(datas['album'])
 		
 		directory = (
-			"%s%s %s/"
+			"%s%s/"
 			% (
 				output,
-				album,
-				url['upc']
+				datas['artist']
 			)
 		)
 
@@ -504,12 +503,11 @@ class Login:
 			tracknum = str(ur['track_position'])
 
 			names.append(
-				"%s%s CD %s TRACK %s"
+				"%s%s - %s"
 				% (
 					directory,
-					album,
-					discnum,
-					tracknum
+					datas['artist'],
+					datas['music']
 				)
 			)
 
