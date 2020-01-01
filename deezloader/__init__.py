@@ -483,16 +483,12 @@ class Login:
 		datas['ar_album'] = " & ".join(datas['ar_album'])
 		album = var_excape(datas['album'])
 
-		if datas['ar_album'] == "Various Artists":
-			datas['ar_album']= datas['artist']
-		else:
-			datas['artist'] = datas['ar_album']
-			
 		directory = (
-			"%s%s/"
+			"%s%s %s/"
 			% (
 				output,
-				datas['artist']
+				album,
+				url['upc']
 			)
 		)
 
