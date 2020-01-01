@@ -482,7 +482,7 @@ class Login:
 
 		datas['ar_album'] = " & ".join(datas['ar_album'])
 		album = var_excape(datas['album'])
-
+		
 		directory = (
 			"%s%s %s/"
 			% (
