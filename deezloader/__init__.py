@@ -498,7 +498,7 @@ class Login:
 
 		for a in url['tracks']['data']:
 			del array[:]
-			title = datas['music'].append(a['title'])
+			datas['music'].append(a['title'])
 
 			ur = request(
 				"https://api.deezer.com/track/%d" % a['id'], True
@@ -512,7 +512,7 @@ class Login:
 				% (
 					directory,
 					datas['ar_album'],
-					title
+					a['title']
 				)
 			)
 
