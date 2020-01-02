@@ -512,7 +512,7 @@ class Login:
 				% (
 					directory,
 					datas['ar_album'],
-					datas['music']
+					datas['title']
 				)
 			)
 
