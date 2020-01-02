@@ -399,11 +399,13 @@ class Login:
 		datas['isrc'] = url['isrc']
 		album = var_excape(datas['album'])
 		
+		#Mad-Max Replace Artist by using the album Artist. Get rid of Fearturings
 		if datas['ar_album'] == "Various Artists":
 			datas['ar_album']= datas['artist']
 		else:
 			datas['artist'] = datas['ar_album']
 
+		#Mad-Max A more useable Structure
 		directory = (
 			"%s%s/"
 			% (
@@ -411,9 +413,11 @@ class Login:
 				datas['artist']
 			)
 		)
-
+		#
+		
 		check_dir(directory)
 
+		#Mad-Max Clear song name to Determine them
 		name = (
 			"%s%s - %s"
 			% (
@@ -422,7 +426,8 @@ class Login:
 				datas['music']
 			)
 		)
-
+		#
+		
 		name = self.download(
 			URL, name,
 			quality, recursive_quality,
@@ -487,7 +492,7 @@ class Login:
 			"%s%s/"
 			% (
 				output,
-				datas['artist']
+				datas['ar_album']
 			)
 		)
 
@@ -506,7 +511,7 @@ class Login:
 				"%s%s - %s"
 				% (
 					directory,
-					datas['artist'],
+					datas['ar_album'],
 					datas['music']
 				)
 			)
