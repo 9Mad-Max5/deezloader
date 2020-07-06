@@ -115,24 +115,31 @@ class Login:
 
 			album = utils.var_excape(datas['album'])
 
+			#Mad-Max Replace Artist by using the album Artist. Get rid of Fearturings
+			if datas['ar_album'] == "Various Artists":
+				datas['ar_album']= datas['artist']
+			else:
+				datas['artist'] = datas['ar_album']
+
+			#Mad-Max A more useable Structure
 			directory = (
-				"%s%s %s/"
+				"%s%s/"
 				% (
-					"%s/" % output,
-					album,
-					datas['upc']
+					output,
+					datas['artist']
+				)
+			)
+			
+			#Mad-Max Clear song name to Determine them
+			name = (
+				"%s%s - %s"
+				% (
+					directory,
+					datas['artist'],
+					datas['music']
 				)
 			)
 
-			name = (
-				"%s%s CD %s TRACK %s"
-				% (
-					directory,
-					album,
-					datas['discnum'],
-					datas['tracknum']
-				)
-			)
 
 			utils.check_dir(directory)
 			name += " ({}){}".format(song_quality, file_format)
