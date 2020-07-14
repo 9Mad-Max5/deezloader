@@ -407,7 +407,7 @@ class Login:
 
 		#Mad-Max A more useable Structure
 		directory = (
-			"%s/%s"
+			"%s%s/"
 			% (
 				output,
 				datas['artist']
