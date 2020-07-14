@@ -123,7 +123,7 @@ class Login:
 
 			#Mad-Max A more useable Structure
 			directory = (
-				"%s%s/"
+				"%s/%s"
 				% (
 					output,
 					datas['artist']
@@ -142,7 +142,7 @@ class Login:
 
 
 			utils.check_dir(directory)
-			name += " ({}){}".format(song_quality, file_format)
+			name += "{}".format(file_format)
 
 			if isfile(name):
 				if recursive_download:
