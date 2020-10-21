@@ -15,7 +15,7 @@ This project has been created to download songs, albums or playlists with Spotif
 	![Windows Support](https://img.shields.io/badge/Windows-Support-brightgreen.svg)
 
 * ### Installation ###
-	pip3 install deezloader
+	sudo pip3 install deezloader
 
 # CLI interface
 
